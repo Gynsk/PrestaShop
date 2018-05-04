@@ -156,10 +156,8 @@ class OrderPresenter implements PresenterInterface
             $orderProduct['name'] = $orderProduct['product_name'];
             $orderProduct['quantity'] = $orderProduct['product_quantity'];
 
-            $productPrice = $includeTaxes ? 'product_price_wt' : 'product_price';
-            $totalPrice = $includeTaxes ? 'total_wt' : 'total_price';
-            $orderProduct['price'] = $this->priceFormatter->format($orderProduct[$productPrice], Currency::getCurrencyInstance((int)$order->id_currency));
-            $orderProduct['total'] = $this->priceFormatter->format($orderProduct[$totalPrice], Currency::getCurrencyInstance((int)$order->id_currency));
+            $orderProduct['price'] = $this->priceFormatter->format($orderProduct['product_price'], Currency::getCurrencyInstance((int)$order->id_currency));
+            $orderProduct['total'] = $this->priceFormatter->format($orderProduct['total_price'], Currency::getCurrencyInstance((int)$order->id_currency));
 
             if ($orderPaid && $orderProduct['is_virtual']) {
                 $id_product_download = ProductDownload::getIdFromIdProduct($orderProduct['product_id']);
