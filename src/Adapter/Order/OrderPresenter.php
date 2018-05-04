@@ -156,7 +156,10 @@ class OrderPresenter implements PresenterInterface
             $orderProduct['name'] = $orderProduct['product_name'];
             $orderProduct['quantity'] = $orderProduct['product_quantity'];
 
-            $orderProduct['price'] = $this->priceFormatter->format($orderProduct['product_price'], Currency::getCurrencyInstance((int)$order->id_currency));
+            $orderProduct['price'] = $this->priceFormatter->format(
+                $orderProduct['product_price'],
+                Currency::getCurrencyInstance((int)$order->id_currency)
+            );
             $orderProduct['total'] = $this->priceFormatter->format($orderProduct['total_price'], Currency::getCurrencyInstance((int)$order->id_currency));
 
             if ($orderPaid && $orderProduct['is_virtual']) {
