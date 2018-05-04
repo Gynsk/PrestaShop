@@ -26,8 +26,6 @@ env:
   global:
     - SYMFONY_DEPRECATIONS_HELPER=disabled
   matrix:
-    - PRESTASHOP_TEST_TYPE=lint
-    - PRESTASHOP_TEST_TYPE=unit
     - PRESTASHOP_TEST_TYPE=e2e
 
 matrix:
@@ -50,22 +48,6 @@ notifications:
 script:
   - composer install --prefer-dist --no-interaction --no-progress
   - bash travis-scripts/install-prestashop
-  - if [ $PRESTASHOP_TEST_TYPE = "lint" ]; then
-        bash tests/check_file_syntax.sh;
-    fi
-
-  - if [ $PRESTASHOP_TEST_TYPE = "unit" ]; then
-        composer run-script phpunit-legacy --timeout=0;
-    fi
-  - if [ $PRESTASHOP_TEST_TYPE = "unit" ]; then
-        composer run-script phpunit-admin --timeout=0;
-    fi
-  - if [ $PRESTASHOP_TEST_TYPE = "unit" ]; then
-        composer run-script phpunit-sf --timeout=0;
-    fi
-  - if [ $PRESTASHOP_TEST_TYPE = "unit" ]; then
-        composer run-script phpunit-controllers --timeout=0;
-    fi
 
   # run-functional-tests must run before starter theme
   - if [ $PRESTASHOP_TEST_TYPE = "e2e" ]; then
