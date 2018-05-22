@@ -5,7 +5,7 @@ let webdriverio = require('webdriverio');
 let globals = require('./globals.webdriverio.js');
 
 let options = {
-  logLevel: 'silent',
+  logLevel: 'verbose',
   waitForTimeout: 30000,
   desiredCapabilities: {
     browserName: 'chrome',
@@ -18,7 +18,7 @@ if (typeof global.selenium_url !== 'undefined') {
 }
 
 let options2 = {
-  logLevel: 'silent',
+  logLevel: 'verbose',
   waitForTimeout: 30000,
   desiredCapabilities: {
     browserName: 'chrome',
