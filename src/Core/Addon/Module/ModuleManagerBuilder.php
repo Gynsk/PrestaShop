@@ -88,7 +88,7 @@ class ModuleManagerBuilder
     public function build()
     {
         $sfContainer = SymfonyContainer::getInstance();
-        if (!is_null($sfContainer)) {
+        if ($sfContainer !== null) {
             return $sfContainer->get('prestashop.module.manager');
         } else {
             return new ModuleManager(
@@ -206,7 +206,8 @@ class ModuleManagerBuilder
                 self::$adminModuleDataProvider,
                 self::$lecacyContext,
                 self::$legacyLogger,
-                self::$translator);
+                self::$translator
+            );
         }
     }
 

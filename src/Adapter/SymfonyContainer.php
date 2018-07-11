@@ -26,6 +26,7 @@
 
 namespace PrestaShop\PrestaShop\Adapter;
 
+use AppKernel;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -46,10 +47,14 @@ final class SymfonyContainer
     public static function getInstance()
     {
         if (!isset(self::$instance)) {
-
             global $kernel;
+            if ($kernel === null) {
+                $kernel = new AppKernel(_PS_MODE_DEV_ ? 'dev' : 'prod', _PS_MODE_DEV_);
+                $kernel->loadClassCache();
+                $kernel->boot();
+            }
 
-            if (!is_null($kernel) && $kernel instanceof KernelInterface) {
+            if ($kernel instanceof KernelInterface) {
                 self::$instance = $kernel->getContainer();
             }
         }

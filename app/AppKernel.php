@@ -67,7 +67,8 @@ class AppKernel extends Kernel
         if ($this->parametersFileExists()) {
             try {
                 $this->enableComposerAutoloaderOnModules($this->getActiveModules());
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         return $bundles;
@@ -87,7 +88,8 @@ class AppKernel extends Kernel
             try {
                 $this->getConnection()->connect();
                 $activeModules = $this->getActiveModules();
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         return array_merge(
