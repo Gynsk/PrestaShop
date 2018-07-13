@@ -61,7 +61,7 @@ class ModuleZipManager
      * @var EventDispatcherInterface
      */
     private $dispatcher;
-    
+
     public function __construct(
         Filesystem $filesystem,
         TranslatorInterface $translator,
@@ -82,7 +82,7 @@ class ModuleZipManager
     public function getName($source)
     {
         $this->initSource($source);
-        
+
         if ($this->getSource($source)->getName($source) !== null) {
             return $this->getSource($source)->getName($source);
         }
@@ -138,10 +138,13 @@ class ModuleZipManager
 
         if (!$validModuleStructure) {
             $this->filesystem->remove($sandboxPath);
-            throw new Exception($this->translator->trans(
+            throw new Exception(
+                $this->translator->trans(
                     'This file does not seem to be a valid module zip',
                     array(),
-                    'Admin.Modules.Notification'));
+                    'Admin.Modules.Notification'
+                )
+            );
         }
 
         $this->getSource($source)->setName($moduleName);
@@ -167,7 +170,8 @@ class ModuleZipManager
         );
         $this->dispatcher->dispatch(
             ModuleZipManagementEvent::DOWNLOAD,
-            new ModuleZipManagementEvent($this->getSource($source)));
+            new ModuleZipManagementEvent($this->getSource($source))
+        );
         $this->filesystem->remove($sandboxPath);
     }
 

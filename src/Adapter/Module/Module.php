@@ -185,8 +185,8 @@ class Module implements ModuleInterface
     public function hasValidInstance()
     {
         if (($this->disk->has('is_present') && $this->disk->getBoolean('is_present') === false)
-            || ($this->disk->has('is_valid') && $this->disk->getBoolean('is_valid') === false)) {
-
+            || ($this->disk->has('is_valid') && $this->disk->getBoolean('is_valid') === false)
+        ) {
             return false;
         }
 

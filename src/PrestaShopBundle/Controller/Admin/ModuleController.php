@@ -548,15 +548,13 @@ class ModuleController extends FrameworkBundleAdminController
         }
 
         try {
-            if (
-                !in_array(
-                    $this->authorizationLevel($this::CONTROLLER_NAME),
-                    array(
-                        PageVoter::LEVEL_CREATE,
-                        PageVoter::LEVEL_DELETE
-                    )
+            if (!in_array(
+                $this->authorizationLevel($this::CONTROLLER_NAME),
+                array(
+                    PageVoter::LEVEL_CREATE,
+                    PageVoter::LEVEL_DELETE
                 )
-            ) {
+            )) {
                 return new JsonResponse(
                     array(
                         'status' => false,
@@ -636,19 +634,21 @@ class ModuleController extends FrameworkBundleAdminController
             $collection = AddonsCollection::createFrom(array($e->getModule()));
             $modules = $this->get('prestashop.core.admin.data_provider.module_interface')->generateAddonsUrls($collection);
             return new JsonResponse(
-                    array(
-                        'status' => false,
-                        'confirmation_subject' => $e->getSubject(),
-                        'module' => $this->getPresentedProducts($modules)[0],
-                        'msg' => $this->trans(
-                            'Confirmation needed by module %module% on %action% (%subject%).',
-                            'Admin.Modules.Notification',
-                            array(
-                                '%subject%' => $e->getSubject(),
-                                '%action%' => $e->getAction(),
-                                '%module%' => $module_name,
-                            )
-                    )));
+                array(
+                    'status' => false,
+                    'confirmation_subject' => $e->getSubject(),
+                    'module' => $this->getPresentedProducts($modules)[0],
+                    'msg' => $this->trans(
+                        'Confirmation needed by module %module% on %action% (%subject%).',
+                        'Admin.Modules.Notification',
+                        array(
+                            '%subject%' => $e->getSubject(),
+                            '%action%' => $e->getAction(),
+                            '%module%' => $module_name,
+                        )
+                    )
+                )
+            );
         } catch (Exception $e) {
             if (isset($module_name)) {
                 $moduleManager->disable($module_name);
