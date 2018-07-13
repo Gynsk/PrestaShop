@@ -86,7 +86,7 @@ class ModuleRepository implements ModuleRepositoryInterface
 
     /**
      * Path to the module directory, coming from Confiuration class
-     * 
+     *
      * @var string
      */
     private $modulePath;
@@ -121,7 +121,7 @@ class ModuleRepository implements ModuleRepositoryInterface
 
     /**
      * Keep loaded modules in cache
-     * 
+     *
      * @var ArrayCache
      */
     private $loadedModules;
