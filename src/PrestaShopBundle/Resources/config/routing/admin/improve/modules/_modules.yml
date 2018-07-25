@@ -1,0 +1,49 @@
+_addons:
+    resource: "addons.yml"
+    prefix: /addons/
+
+admin_module_cart:
+    path: /cart/{moduleId}
+    methods: [GET]
+    defaults:
+        _controller: PrestaShopBundle:Admin/Improve/Module:getModuleCart
+    requirements:
+        moduleId: \d+
+
+admin_module_catalog:
+    path:     /catalog
+    methods:  [GET]
+    defaults:
+        _controller: PrestaShopBundle:Admin/Improve/Module:catalog
+        _legacy_controller: AdminModulesCatalog
+
+admin_module_catalog_post:
+    path:     /catalog/recommended
+    methods:  [GET]
+    defaults:
+        _controller: PrestaShopBundle:Admin/Improve/Module:getPreferredModules
+        _legacy_controller: AdminModulesCatalog
+
+admin_module_manage:
+    path:     /manage/{category}/{keyword}
+    methods:  [GET]
+    defaults:
+        category:
+        keyword:
+        _controller: PrestaShopBundle:Admin/Improve/Module:manage
+        _legacy_controller: AdminModulesManage
+
+admin_module_manage_action:
+    path:     /manage/action/{action}/{module_name}
+    methods:  [POST]
+    defaults:
+        _controller: PrestaShopBundle:Admin/Improve/Module:module
+    requirements:
+        action: install|uninstall|enable|disable|enable_mobile|disable_mobile|reset|upgrade
+
+admin_module_notification:
+    path:     /notifications
+    methods:  [GET]
+    defaults:
+        _controller: PrestaShopBundle:Admin/Improve/Module:notification
+        _legacy_controller: AdminModulesNotifications

@@ -215,8 +215,7 @@ class FrameworkBundleAdminController extends Controller
      */
     protected function authorizationLevel($controller)
     {
-        if (
-            $this->isGranted(PageVoter::DELETE, $controller.'_')) {
+        if ($this->isGranted(PageVoter::DELETE, $controller.'_')) {
             return PageVoter::LEVEL_DELETE;
         } elseif ($this->isGranted(PageVoter::CREATE, $controller.'_')) {
             return PageVoter::LEVEL_CREATE;

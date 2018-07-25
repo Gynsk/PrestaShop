@@ -1,0 +1,3 @@
+_api_modules:
+    resource: "modules/_modules.yml"
+    prefix: /modules/

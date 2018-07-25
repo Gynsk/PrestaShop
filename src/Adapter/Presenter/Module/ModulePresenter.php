@@ -48,6 +48,23 @@ class ModulePresenter implements PresenterInterface
     }
 
     /**
+     * Present array of Module
+     *
+     * @param array $modules[Module]
+     *
+     * @return array
+     */
+    public function presentCollection(array $modules)
+    {
+        $presentedProducts = [];
+        foreach ($modules as $name => $module) {
+            $presentedProducts[$name] = $this->present($module);
+        }
+
+        return $presentedProducts;
+    }
+
+    /**
      * @param Module $module
      *
      * @return array
@@ -84,7 +101,7 @@ class ModulePresenter implements PresenterInterface
 
     /**
      * Generate the list of small icons to be displayed near the module name
-     * 
+     *
      * @param array $attributes Attributes of presented module
      * @return array
      */

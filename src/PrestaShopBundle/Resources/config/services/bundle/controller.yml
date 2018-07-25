@@ -73,3 +73,8 @@ services:
         properties:
             translationService: "@prestashop.service.translation"
             queryParams: "@prestashop.core.api.query_translation_params_collection"
+
+    prestashop.core.api.improve.module.controller:
+        class: PrestaShopBundle\Controller\Api\Improve\ModuleController
+        parent: prestashop.core.api.controller
+        public: true
